@@ -53,9 +53,19 @@ def scan_full_article():
         valid = False
         while(not valid):
             #get info of a random wikipedia article
-            response = requests.get('https://en.wikipedia.org/api/rest_v1/page/random/summary')
+            response = requests.get('https://en.wikipedia.org/api/rest_v1/page/random/html')
             html = response.text
             
-            if any(
+            if any(c in html in wanted_words):
                 
+                valid = True
+                
+                #get the URL to open in browser
+                title = response.url
+                title = title.replace('https://en.wikipedia.org/api/rest_v1/page/random/html/',"")
+
+                url = 'https://en.wikipedia.org/wiki/' + title
+
+                webbrowser.open_new_tab(url)
+scan_full_article() 
 
