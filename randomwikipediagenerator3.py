@@ -23,7 +23,7 @@ def exclude_articles():
                 #open the url
                 webbrowser.open_new_tab(url)
 
-exclude_articles()    
+exclude_articles()     
 
 wanted_words = ["Seth","Rose","Olive","Mildred","Robert","Gad","Saleh","Eric","Dickens","Racheal"]
 
@@ -46,5 +46,16 @@ def include_articles():
                 #open the url
                 webbrowser.open_new_tab(url)
 
-include_articles()    
+include_articles()  
+
+def scan_full_article():
+    for i in range(0,5):
+        valid = False
+        while(not valid):
+            #get info of a random wikipedia article
+            response = requests.get('https://en.wikipedia.org/api/rest_v1/page/random/summary')
+            html = response.text
+            
+            if any(
+                
 
